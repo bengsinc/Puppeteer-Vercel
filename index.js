@@ -24,11 +24,12 @@ app.get("/api", async (req, res) => {
   }
 
   try {
+    const { url } = req.query;
     let browser = await puppeteer.launch(options);
 
     let page = await browser.newPage();
 
-    await page.goto("https://bengs.com.br/cartaz");
+    await page.goto(url);
 
 
       const pdf = await page.pdf({
