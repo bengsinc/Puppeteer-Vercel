@@ -27,8 +27,20 @@ app.get("/api", async (req, res) => {
     let browser = await puppeteer.launch(options);
 
     let page = await browser.newPage();
-    await page.goto("https://www.google.com");
-    res.send(await page.title());
+
+    await page.goto("https://bengs.com.br/cartaz");
+
+
+      const pdf = await page.pdf({
+        format: 'a4',
+        printBackground: true,
+      });
+      res.contentType('application/pdf');
+
+      return res.status(200).send(pdf);
+    //res.send(await page.title());
+
+
   } catch (err) {
     console.error(err);
     return null;
