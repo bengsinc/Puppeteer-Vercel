@@ -33,7 +33,7 @@ app.get("/api", async (req, res) => {
 
 
       const pdf = await page.pdf({
-        format: 'a4',
+        format: 'letter',
         printBackground: true,
       });
       res.contentType('application/pdf');
